@@ -38,3 +38,6 @@ You now have a functioning API using Django Rest framework Request and Response 
 We have extended the API to be able to handle different format suffixes and have explored
 how to POST data via the API.
 
+![1](https://user-images.githubusercontent.com/51438739/125299617-f0acbb80-e346-11eb-9958-bf522b97fc8a.png)
+--------
+![2](https://user-images.githubusercontent.com/51438739/125299622-f1dde880-e346-11eb-89d0-fe9ee9bb4097.png)
