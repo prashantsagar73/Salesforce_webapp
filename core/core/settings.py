@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sales',
     'rest_framework',
-    # 'salesforce',
+    'salesforce',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'salesforce': {
+    'ENGINE': 'salesforce.backend',
+    'CONSUMER_KEY': '',                # 'client_id'   in OAuth2 terminology
+    'CONSUMER_SECRET': '',             # 'client_secret'
+    'USER': '',
+    'PASSWORD': '',
+    'HOST': 'https://test.salesforce.com',
+}
 }
 
 
@@ -126,3 +134,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
