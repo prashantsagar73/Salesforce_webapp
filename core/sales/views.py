@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.response import Response
 from .serializers import ContactSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -8,6 +7,7 @@ from .utils import login
 from .models import Contact
 
 
+# validation and filter of user data 
 class ContactViewSet(ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
