@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,16 +82,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
+    # The variable DATABASES should be redefined in local_settings with details
+    # in order to protect private secret values from unintentional committing.
     'salesforce': {
-    'ENGINE': 'salesforce.backend',
-    'CONSUMER_KEY': '',                # 'client_id'   in OAuth2 terminology
-    'CONSUMER_SECRET': '',             # 'client_secret'
-    'USER': '',
-    'PASSWORD': '',
-    'HOST': 'https://test.salesforce.com',
-}
-}
-
+        'ENGINE': 'salesforce.backend',
+        "CONSUMER_KEY": os.environ.get('SF_CONSUMER_KEY', ''),
+        "CONSUMER_SECRET": os.environ.get('SF_CONSUMER_SECRET', ''),
+        'USER': os.environ.get('SF_USER', ''),
+        'PASSWORD': os.environ.get('SF_PASSWORD', ''),
+        'HOST': 'https://login.salesforce.com',
+        'TEST': {
+            'DEPENDENCIES': [],
+            'MIGRATE': False,   # to run tests without migrations in Django 3.1+
+        },
+    }
+}  # type: Dict[str, Any]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
