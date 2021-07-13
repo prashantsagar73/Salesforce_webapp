@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'salesforeauth',
     'sales',
+    'django_salesforce_oauth',
     
 ]
 
