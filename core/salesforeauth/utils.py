@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 
-from django_salesforce_oauth.oauth import OAuth
+from salesforeauth.oauth import OAuth
 
 
 def get_or_create_user(oauth: OAuth):
