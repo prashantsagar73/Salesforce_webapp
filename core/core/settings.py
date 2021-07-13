@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'salesforeauth',
     'sales',
-    'rest_framework',
-    'salesforce',
+    
 ]
 
 MIDDLEWARE = [
@@ -81,25 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    # The variable DATABASES should be redefined in local_settings with details
-    # in order to protect private secret values from unintentional committing.
-    'salesforce': {
-        'ENGINE': 'salesforce.backend',
-        "CONSUMER_KEY": os.environ.get('SF_CONSUMER_KEY', ''),
-        "CONSUMER_SECRET": os.environ.get('SF_CONSUMER_SECRET', ''),
-        'USER': os.environ.get('SF_USER', ''),
-        'PASSWORD': os.environ.get('SF_PASSWORD', ''),
-        'HOST': 'https://login.salesforce.com',
-        'TEST': {
-            'DEPENDENCIES': [],
-            'MIGRATE': False,   # to run tests without migrations in Django 3.1+
-        },
     }
-}  # type: Dict[str, Any]
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+} 
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -141,3 +124,14 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Auth
+LOGIN_URL = "/oauth/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+# django_salesforce_oauth
+SCOPES = "id api refresh_token"
+OAUTH_REDIRECT_URI = "http://localhost:8000/oauth/callback/"
+SFDC_CONSUMER_KEY = os.getenv("SFDC_CONSUMER_KEY")
+SFDC_CONSUMER_SECRET = os.getenv("SFDC_CONSUMER_SECRET")
+CUSTOM_CALLBACK = "frontend.callback.oauth_callback"
